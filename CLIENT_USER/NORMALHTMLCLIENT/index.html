@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f5f7fb" />
+    <title>Narada Chat - Plain HTML</title>
+    <script src="/ai-chat-widget.iife.js"></script>
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        background: #f5f7fb;
+        color: #192235;
+        font: 16px/1.6 system-ui, sans-serif;
+        margin: 0;
+      }
+      main { margin: 12vh auto; max-width: 720px; padding: 24px; }
+      h1 { font-size: clamp(2rem, 7vw, 3.5rem); line-height: 1.1; }
+      p { color: #536078; }
+      code { background: #e9edf5; border-radius: 4px; padding: 2px 5px; }
+      .demo-controls { display: flex; flex-wrap: wrap; align-items: end; gap: 12px; margin-top: 22px; }
+      .demo-controls label { display: grid; gap: 5px; color: #536078; font-size: 12px; }
+      .demo-controls select, .demo-controls button {
+        min-height: 38px; padding: 0 12px; border: 1px solid #d5dce8;
+        border-radius: 8px; background: #fff; color: #192235; font: inherit;
+      }
+      .demo-controls button { cursor: pointer; font-size: 13px; font-weight: 600; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p>Plain HTML integration</p>
+      <h1>Your site, with an AI assistant.</h1>
+      <p>
+        This page loads the Narada custom element directly from one script.
+        Open the chat launcher in the bottom-right corner to try it.
+      </p>
+      <p>Embed tag: <code>&lt;ai-chat-widget app-id="demo-workspace"&gt;</code></p>
+      <div class="demo-controls" aria-label="Widget appearance controls">
+        <label>
+          Palette
+          <select id="palette">
+            <option value="indigo-modern">Indigo Modern</option>
+            <option value="ocean-blue">Ocean Blue</option>
+            <option value="modern-sky-blue">Modern Sky Blue</option>
+          </select>
+        </label>
+        <button id="theme-toggle" type="button">Switch to dark theme</button>
+      </div>
+    </main>
+    <ai-chat-widget
+      app-id="demo-workspace"
+      api-url="http://localhost:8000/api/chat"
+      palette="indigo-modern"
+      theme="light"
+    ></ai-chat-widget>
+    <script>
+      const widget = document.querySelector('ai-chat-widget');
+      const themeToggle = document.querySelector('#theme-toggle');
+      let theme = 'light';
+
+      document.querySelector('#palette').addEventListener('change', (event) => {
+        widget.setAttribute('palette', event.target.value);
+      });
+
+      themeToggle.addEventListener('click', () => {
+        theme = theme === 'light' ? 'dark' : 'light';
+        widget.setAttribute('theme', theme);
+        themeToggle.textContent = `Switch to ${theme === 'light' ? 'dark' : 'light'} theme`;
+      });
+    </script>
+  </body>
+</html>

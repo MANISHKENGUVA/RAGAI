@@ -1,0 +1,79 @@
+// Centralized palettes.
+// Tint values (50-200) get progressively lighter.
+// Base is 250; shade values (300-450) get progressively darker.
+
+$color-map-v01: (
+  "primary-50":  #eef2ff,
+  "primary-100": #c7d2fe,
+  "primary-150": #a5b4fc,
+  "primary-200": #818cf8,
+  "primary-250": #6366f1,
+  "primary-300": #4f46e5,
+  "primary-350": #4338ca,
+  "primary-400": #3730a3,
+  "primary-450": #312e81
+);
+
+$color-map-v02: (
+  "primary-50":  #eff6ff,
+  "primary-100": #bfdbfe,
+  "primary-150": #93c5fd,
+  "primary-200": #60a5fa,
+  "primary-250": #3b82f6,
+  "primary-300": #2563eb,
+  "primary-350": #1d4ed8,
+  "primary-400": #1e40af,
+  "primary-450": #1e3a8a
+);
+
+$color-map-v03: (
+  "primary-50":  #f0f9ff,
+  "primary-100": #bae6fd,
+  "primary-150": #7dd3fc,
+  "primary-200": #38bdf8,
+  "primary-250": #0ea5e9,
+  "primary-300": #0284c7,
+  "primary-350": #0369a1,
+  "primary-400": #075985,
+  "primary-450": #0c4a6e
+);
+
+// Neutral colors shared across palettes and surface themes.
+$neutral-colors: (
+  "white":       #ffffff,
+  "neutral-50":  #f8fafc,
+  "neutral-100": #f1f5f9,
+  "neutral-200": #e2e8f0,
+  "neutral-300": #cbd5e1,
+  "neutral-400": #94a3b8,
+  "neutral-500": #64748b,
+  "neutral-600": #475569,
+  "neutral-700": #334155,
+  "neutral-800": #1e293b,
+  "neutral-900": #0f172a,
+  "black":       #020617
+);
+
+$success-colors: (
+  "success-light": #dcfce7,
+  "success-base": #16a34a,
+  "success-dark": #166534
+);
+
+$warning-colors: (
+  "warning-light": #fef3c7,
+  "warning-base": #d97706,
+  "warning-dark": #92400e
+);
+
+$error-colors: (
+  "error-light": #fee2e2,
+  "error-base": #dc2626,
+  "error-dark": #991b1b
+);
+
+$info-colors: (
+  "info-light": #dbeafe,
+  "info-base": #2563eb,
+  "info-dark": #1e40af
+);

@@ -1,0 +1,20 @@
+{
+  "name": "react-client",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "predev": "node ../scripts/prepare-widget.mjs",
+    "dev": "vite --host 0.0.0.0",
+    "prebuild": "node ../scripts/prepare-widget.mjs",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.0.0",
+    "vite": "^7.3.7"
+  }
+}

@@ -1,0 +1,143 @@
+.ui-field {
+  position: relative;
+  display: grid;
+  gap: 0.375rem;
+  min-width: 0;
+  color: $neutral-900;
+  font: inherit;
+
+  &__label {
+    color: $neutral-900;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  &__description {
+    margin: 0;
+    color: $neutral-600;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+  }
+
+  &__control {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    border: 1px solid $neutral-300;
+    border-radius: 0.5rem;
+    background: $white;
+    transition: border-color 150ms ease, box-shadow 150ms ease;
+
+    &:focus-within {
+      border-color: $primary-base;
+      box-shadow: 0 0 0 3px $primary-tint-1;
+    }
+
+    &.has-error {
+      border-color: $error-base;
+    }
+  }
+
+  &__leading,
+  &__trailing {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    padding-inline: 0.75rem;
+    color: $neutral-600;
+  }
+
+  &__clear,
+  &__calendar-trigger {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+    padding: 0.375rem;
+    border: 0;
+    border-radius: 0.375rem;
+    background: transparent;
+    color: $neutral-600;
+    font: inherit;
+    cursor: pointer;
+
+    &:hover {
+      background: $neutral-100;
+      color: $neutral-900;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $primary-base;
+      outline-offset: -2px;
+    }
+  }
+
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.25rem 0.75rem;
+    min-height: 1em;
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
+
+  &__hint {
+    color: $neutral-600;
+  }
+
+  &__error {
+    color: $error-base;
+  }
+
+  &__counter {
+    margin-left: auto;
+    color: $neutral-600;
+
+    &.is-limit {
+      color: $error-base;
+    }
+  }
+}
+
+.ui-required {
+  color: $error-base;
+}
+
+.ui-text-field,
+.ui-textarea,
+.ui-select {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid $neutral-300;
+  border-radius: 0.5rem;
+  background: $white;
+  color: $neutral-900;
+  font: inherit;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+
+  &::placeholder {
+    color: $neutral-500;
+    opacity: 1;
+  }
+
+  &:focus {
+    border-color: $primary-base;
+    outline: 0;
+    box-shadow: 0 0 0 3px $primary-tint-1;
+  }
+
+  &:disabled {
+    background: $neutral-100;
+    color: $neutral-400;
+    cursor: not-allowed;
+  }
+
+  &[aria-invalid="true"] {
+    border-color: $error-base;
+  }
+}

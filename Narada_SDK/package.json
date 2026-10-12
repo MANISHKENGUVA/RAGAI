@@ -1,0 +1,19 @@
+{
+  "name": "@narada/ai-chat-widget",
+  "version": "1.0.0",
+  "description": "Shadow DOM isolated, embeddable Vue 2 chat widget",
+  "main": "dist/ai-chat-widget.iife.js",
+  "unpkg": "dist/ai-chat-widget.iife.js",
+  "scripts": {
+    "build": "vite build && vite build --mode minified",
+    "build:clients": "npm --prefix .. run build:clients"
+  },
+  "dependencies": {
+    "vue": "2.7.16",
+    "vue-custom-element": "3.3.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue2": "^2.3.4",
+    "vite": "^7.3.7"
+  }
+}

@@ -1,0 +1,127 @@
+.ui-choice {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  width: fit-content;
+  max-width: 100%;
+  color: $neutral-900;
+  cursor: pointer;
+
+  &.is-disabled {
+    color: $neutral-400;
+    cursor: not-allowed;
+  }
+
+  &.has-error .ui-checkbox-mark {
+    border-color: $error-base;
+  }
+
+  &__input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    clip-path: inset(50%);
+
+    &:focus-visible + .ui-checkbox-mark,
+    &:focus-visible + .ui-radio-mark {
+      outline: 3px solid $primary-tint-2;
+      outline-offset: 2px;
+    }
+
+    &:checked + .ui-checkbox-mark {
+      border-color: $primary-base;
+      background: $primary-base;
+      color: $white;
+    }
+
+    &:indeterminate + .ui-checkbox-mark {
+      border-color: $primary-base;
+      background: $primary-base;
+      color: $white;
+    }
+
+    &:checked + .ui-radio-mark {
+      border-color: $primary-base;
+
+      &::after {
+        background: $primary-base;
+        transform: scale(1);
+      }
+    }
+  }
+
+  &__copy {
+    display: grid;
+    gap: 0.2rem;
+    min-width: 0;
+  }
+
+  &__label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  &__description {
+    color: $neutral-600;
+    font-size: 0.8125rem;
+    line-height: 1.45;
+  }
+}
+
+.ui-checkbox-mark,
+.ui-radio-mark {
+  display: inline-flex;
+  position: relative;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 1.125rem;
+  height: 1.125rem;
+  margin-top: 0.1rem;
+  border: 1px solid $neutral-400;
+  background: $white;
+  color: transparent;
+  transition: border-color 150ms ease, background-color 150ms ease, color 150ms ease;
+}
+
+.ui-checkbox-mark {
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+
+  span {
+    line-height: 1;
+  }
+}
+
+.ui-choice__input:indeterminate + .ui-checkbox-mark span {
+  visibility: hidden;
+}
+
+.ui-choice__input:indeterminate + .ui-checkbox-mark::after {
+  position: absolute;
+  width: 0.5rem;
+  height: 2px;
+  background: $white;
+  content: "";
+}
+
+.ui-radio-mark {
+  border-radius: 50%;
+
+  &::after {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: inherit;
+    background: transparent;
+    content: "";
+    transform: scale(0);
+    transition: transform 120ms ease;
+  }
+}

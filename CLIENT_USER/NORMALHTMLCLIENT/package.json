@@ -1,0 +1,14 @@
+{
+  "name": "normal-html-client",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "predev": "node ../scripts/prepare-widget.mjs",
+    "dev": "vite --host 0.0.0.0",
+    "prebuild": "node ../scripts/prepare-widget.mjs",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "vite": "^7.3.7"
+  }
+}

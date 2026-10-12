@@ -1,0 +1,144 @@
+// Intentionally using legacy @import syntax as requested.
+@import "../../colors";
+
+// Select the compile-time palette for Sass consumers.
+$active-color-map: $color-map-v02;
+
+// Primary tints
+$primary-tint-1: map-get($active-color-map, "primary-50");
+$primary-tint-2: map-get($active-color-map, "primary-100");
+$primary-tint-3: map-get($active-color-map, "primary-150");
+$primary-tint-4: map-get($active-color-map, "primary-200");
+
+$primary-base: map-get($active-color-map, "primary-250");
+
+$primary-shade-1: map-get($active-color-map, "primary-300");
+$primary-shade-2: map-get($active-color-map, "primary-350");
+$primary-shade-3: map-get($active-color-map, "primary-400");
+$primary-shade-4: map-get($active-color-map, "primary-450");
+
+$white: map-get($neutral-colors, "white");
+$neutral-50: map-get($neutral-colors, "neutral-50");
+$neutral-100: map-get($neutral-colors, "neutral-100");
+$neutral-200: map-get($neutral-colors, "neutral-200");
+$neutral-300: map-get($neutral-colors, "neutral-300");
+$neutral-400: map-get($neutral-colors, "neutral-400");
+$neutral-500: map-get($neutral-colors, "neutral-500");
+$neutral-600: map-get($neutral-colors, "neutral-600");
+$neutral-700: map-get($neutral-colors, "neutral-700");
+$neutral-800: map-get($neutral-colors, "neutral-800");
+$neutral-900: map-get($neutral-colors, "neutral-900");
+$black: map-get($neutral-colors, "black");
+
+$success-light: map-get($success-colors, "success-light");
+$success-base: map-get($success-colors, "success-base");
+$success-dark: map-get($success-colors, "success-dark");
+
+$warning-light: map-get($warning-colors, "warning-light");
+$warning-base: map-get($warning-colors, "warning-base");
+$warning-dark: map-get($warning-colors, "warning-dark");
+
+$error-light: map-get($error-colors, "error-light");
+$error-base: map-get($error-colors, "error-base");
+$error-dark: map-get($error-colors, "error-dark");
+
+$info-light: map-get($info-colors, "info-light");
+$info-base: map-get($info-colors, "info-base");
+$info-dark: map-get($info-colors, "info-dark");
+
+@mixin emit-primary-palette($palette) {
+  --primary-50: #{map-get($palette, "primary-50")};
+  --primary-100: #{map-get($palette, "primary-100")};
+  --primary-150: #{map-get($palette, "primary-150")};
+  --primary-200: #{map-get($palette, "primary-200")};
+  --primary-250: #{map-get($palette, "primary-250")};
+  --primary-300: #{map-get($palette, "primary-300")};
+  --primary-350: #{map-get($palette, "primary-350")};
+  --primary-400: #{map-get($palette, "primary-400")};
+  --primary-450: #{map-get($palette, "primary-450")};
+}
+
+@mixin emit-primary-aliases {
+  --color-primary-tint-1: var(--primary-50);
+  --color-primary-tint-2: var(--primary-100);
+  --color-primary-tint-3: var(--primary-150);
+  --color-primary-tint-4: var(--primary-200);
+  --color-primary: var(--primary-250);
+  --color-primary-shade-1: var(--primary-300);
+  --color-primary-shade-2: var(--primary-350);
+  --color-primary-shade-3: var(--primary-400);
+  --color-primary-shade-4: var(--primary-450);
+}
+
+// Palette choice is independent of the light/dark surface theme.
+:root {
+  @include emit-primary-palette($color-map-v01);
+  @include emit-primary-aliases;
+
+  --color-white: #{$white};
+  --color-neutral-50: #{$neutral-50};
+  --color-neutral-100: #{$neutral-100};
+  --color-neutral-200: #{$neutral-200};
+  --color-neutral-300: #{$neutral-300};
+  --color-neutral-400: #{$neutral-400};
+  --color-neutral-500: #{$neutral-500};
+  --color-neutral-600: #{$neutral-600};
+  --color-neutral-700: #{$neutral-700};
+  --color-neutral-800: #{$neutral-800};
+  --color-neutral-900: #{$neutral-900};
+  --color-black: #{$black};
+
+  --color-success-background: #{map-get($success-colors, "success-light")};
+  --color-success: #{$success-base};
+  --color-success-dark: #{$success-dark};
+  --color-warning-background: #{map-get($warning-colors, "warning-light")};
+  --color-warning: #{$warning-base};
+  --color-warning-dark: #{$warning-dark};
+  --color-error-background: #{map-get($error-colors, "error-light")};
+  --color-error: #{$error-base};
+  --color-error-dark: #{$error-dark};
+  --color-info-background: #{map-get($info-colors, "info-light")};
+  --color-info: #{map-get($info-colors, "info-base")};
+  --color-info-dark: #{map-get($info-colors, "info-dark")};
+}
+
+[data-palette] {
+  @include emit-primary-aliases;
+}
+
+[data-palette="indigo-modern"] {
+  @include emit-primary-palette($color-map-v01);
+}
+
+[data-palette="ocean-blue"] {
+  @include emit-primary-palette($color-map-v02);
+}
+
+[data-palette="modern-sky-blue"] {
+  @include emit-primary-palette($color-map-v03);
+}
+
+:root,
+[data-theme="light"] {
+  --color-page-background: #f8fafc;
+  --color-surface: #ffffff;
+  --color-surface-elevated: #ffffff;
+  --color-surface-subtle: #f1f5f9;
+  --color-text: #0f172a;
+  --color-text-muted: #64748b;
+  --color-border: #e2e8f0;
+  --color-input-background: #ffffff;
+  --color-disabled-text: #94a3b8;
+}
+
+[data-theme="dark"] {
+  --color-page-background: #020617;
+  --color-surface: #0f172a;
+  --color-surface-elevated: #1e293b;
+  --color-surface-subtle: #1e293b;
+  --color-text: #f8fafc;
+  --color-text-muted: #cbd5e1;
+  --color-border: #334155;
+  --color-input-background: #0f172a;
+  --color-disabled-text: #64748b;
+}

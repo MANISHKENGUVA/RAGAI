@@ -1,0 +1,23 @@
+.ui-select-wrap {
+  position: relative;
+}
+
+.ui-select {
+  min-height: 2.75rem;
+  padding: 0.625rem 2.5rem 0.625rem 0.75rem;
+  appearance: none;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.ui-select-chevron {
+  position: absolute;
+  top: 50%;
+  right: 0.875rem;
+  color: $neutral-600;
+  pointer-events: none;
+  transform: translateY(-55%);
+}

@@ -1,0 +1,28 @@
+// Import the default theme first so component styles can use its Sass tokens.
+@import "./themes/theme1/index";
+@import "./components/Button";
+@import "./components/IconButton";
+@import "./components/Field";
+@import "./components/TextField";
+@import "./components/Textarea";
+@import "./components/Select";
+@import "./components/Checkbox";
+@import "./components/RadioGroup";
+@import "./components/Switch";
+@import "./components/DatePicker";
+@import "./components/Rating";
+@import "./components/ChatWidget";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--color-text, #{$neutral-900});
+  background: var(--color-page-background, #{$neutral-50});
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
