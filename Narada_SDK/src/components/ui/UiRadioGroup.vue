@@ -1,5 +1,10 @@
 <template>
-  <fieldset class="ui-radio-group" :aria-describedby="error ? `${groupId}-error` : description ? `${groupId}-description` : null">
+  <fieldset
+    class="ui-radio-group"
+    role="radiogroup"
+    :aria-invalid="error ? 'true' : 'false'"
+    :aria-describedby="error ? `${groupId}-error` : description ? `${groupId}-description` : null"
+  >
     <legend class="ui-field__label">{{ label }}<span v-if="required" class="ui-required" aria-hidden="true"> *</span></legend>
     <p v-if="description" class="ui-field__description" :id="`${groupId}-description`">{{ description }}</p>
     <div class="ui-radio-group__options">
@@ -16,6 +21,7 @@
           :value="option.value"
           :checked="value === option.value"
           :disabled="disabled || option.disabled"
+          :aria-checked="String(value === option.value)"
           @change="$emit('input', option.value)"
         />
         <span class="ui-radio-mark" aria-hidden="true"></span>
@@ -52,7 +58,7 @@ export default {
       default: () => [],
     },
     value: {
-      type: String,
+      type: [String, Number],
       default: '',
     },
     error: {
@@ -79,11 +85,18 @@ export default {
       return this.id || this.generatedId;
     },
     normalizedOptions() {
-      return this.options.map((option) => (
-        typeof option === 'string'
-          ? { label: option, value: option, disabled: false }
-          : { disabled: false, ...option }
-      ));
+      return this.options.map((option) => {
+        if (typeof option === 'string') {
+          return { label: option, value: option, disabled: false };
+        }
+
+        return {
+          label: option.label ?? String(option.value),
+          value: option.value,
+          disabled: Boolean(option.disabled),
+          description: option.description || '',
+        };
+      });
     },
   },
 };

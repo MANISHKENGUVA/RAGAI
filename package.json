@@ -7,17 +7,21 @@
     "CLIENT_USER/NORMALHTMLCLIENT",
     "CLIENT_USER/REACTCLIENT",
     "CLIENT_USER/VUECLIENT",
-    "stitch_narada_chat_widget_sdk"
+    "stitch_narada_chat_widget_sdk",
+    "apps/*",
+    "packages/*"
   ],
   "scripts": {
     "build:sdk": "npm run build --workspace=@narada/ai-chat-widget",
     "build:clients": "npm run build --workspace=normal-html-client && npm run build --workspace=react-client && npm run build --workspace=vue-client && npm run build --workspace=angular-client",
     "build:portal": "npm run build --workspace=narada-integration-portal",
-    "build": "npm run build:sdk && npm run build:clients && npm run build:portal",
+    "build:platform": "node --check packages/chatbot-schema/src/index.js && node --check packages/component-registry/src/index.js && node --check packages/ai-adapter/src/index.js && node --check packages/design-tokens/src/index.js",
+    "build": "npm run build:sdk && npm run build:clients && npm run build:portal && npm run build:platform",
     "dev:html": "npm run dev --workspace=normal-html-client",
     "dev:react": "npm run dev --workspace=react-client",
     "dev:vue": "npm run dev --workspace=vue-client",
     "dev:angular": "npm run start --workspace=angular-client",
-    "dev:portal": "npm run dev --workspace=narada-integration-portal"
+    "dev:portal": "npm run dev --workspace=narada-integration-portal",
+    "test:platform": "node --test packages/chatbot-schema/test/*.test.js packages/component-registry/test/*.test.js packages/ai-adapter/test/*.test.js packages/event-engine/test/*.test.js"
   }
 }

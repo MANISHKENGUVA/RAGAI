@@ -4,6 +4,8 @@ This is an example Python project used in Codeanywhere.
 
 ### Narada embeddable chat widget
 
+This repository now includes a first-pass foundation for the multi-tenant chatbot platform described in the design brief: schema-first validation, component registry metadata, token-based theming, and an OpenRouter provider abstraction that is compatible with Azure OpenAI and OpenAI behind the same interface.
+
 The repository also includes the Vue 2/Vite SDK and runnable plain HTML, React,
 Vue, and Angular host examples. Install the npm workspace from the repository
 root, then build the SDK and all clients:
