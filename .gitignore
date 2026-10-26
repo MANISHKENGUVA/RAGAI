@@ -8,3 +8,5 @@ dist/
 CLIENT_USER/*/public/ai-chat-widget.iife.js
 CLIENT_USER/*/public/ai-chat-widget.iife.js.map
 .env
+
+.venv/
