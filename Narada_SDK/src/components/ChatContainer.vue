@@ -47,8 +47,6 @@ import ChatHeader from './ChatHeader.vue';
 import ChatInput from './ChatInput.vue';
 import MessageList from './MessageList.vue';
 
-const MAX_ERROR_LENGTH = 400;
-
 export default {
   name: 'ChatContainer',
   components: {
@@ -108,6 +106,27 @@ export default {
         message.rating = value;
       }
     },
+    getHttpErrorMessage(status) {
+      if (status === 401 || status === 403) {
+        return 'You do not have access to this assistant.';
+      }
+      if (status === 404) {
+        return 'The assistant endpoint could not be found.';
+      }
+      if (status === 422) {
+        return 'The message could not be accepted. Check it and try again.';
+      }
+      if (status === 429) {
+        return 'Too many requests. Wait a moment and try again.';
+      }
+      if (status === 501) {
+        return 'This assistant is not enabled yet.';
+      }
+      if (status >= 500) {
+        return 'The assistant is temporarily unavailable. Please try again later.';
+      }
+      return 'We could not send your message. Check the request and try again.';
+    },
     resetConversation() {
       if (this.isLoading) {
         return;
@@ -160,11 +179,7 @@ export default {
         });
 
         if (!response.ok) {
-          const responseBody = await response.text();
-          const detail = responseBody.trim().slice(0, MAX_ERROR_LENGTH);
-          throw new Error(
-            `Chat request failed (${response.status})${detail ? `: ${detail}` : ''}`,
-          );
+          throw new Error(this.getHttpErrorMessage(response.status));
         }
         if (!response.body || typeof response.body.getReader !== 'function') {
           throw new Error('Chat response does not support streaming.');

@@ -18,8 +18,12 @@ npm install
 Build the SDK and all four client apps:
 
 ```sh
-npm run build
+npm run build:sdk
+npm run build:clients
 ```
+
+The aggregate `npm run build` also invokes an integration-portal workspace
+that is not present in this checkout and therefore does not complete.
 
 Each client has `predev` and `prebuild` steps that rebuild the SDK and copy
 only the bundle it loads, `Narada_SDK/dist/ai-chat-widget.iife.js`, and its

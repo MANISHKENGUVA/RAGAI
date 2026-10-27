@@ -1,34 +1,35 @@
-This is an example Python project used in Codeanywhere.
+# Narada chat widget and API prototype
 
-[Try it out](https://app.codeanywhere.com/#https://github.com/Codeanywhere-Templates/python)
+This repository contains the embeddable Narada chat widget, example host
+clients, and an early FastAPI backend foundation. It is a prototype: the
+Python API does not yet implement document ingestion, retrieval, model
+generation, streaming, authentication, or persistence.
 
-### Narada embeddable chat widget
+## Widget and client examples
 
-This repository now includes a first-pass foundation for the multi-tenant chatbot platform described in the design brief: schema-first validation, component registry metadata, token-based theming, and an OpenRouter provider abstraction that is compatible with Azure OpenAI and OpenAI behind the same interface.
+The Vue 2/Vite SDK is in [`Narada_SDK`](./Narada_SDK/README.md). Runnable
+plain HTML, React, Vue, and Angular host examples are in
+[`CLIENT_USER`](./CLIENT_USER/README.md).
 
-The repository also includes the Vue 2/Vite SDK and runnable plain HTML, React,
-Vue, and Angular host examples. Install the npm workspace from the repository
-root, then build the SDK and all clients:
+Install the npm workspace, then build the SDK and host clients:
 
 ```sh
-npm install
-npm run build
+npm ci
+npm run build:sdk
+npm run build:clients
 ```
 
-Start a host example with `npm run dev:html`, `npm run dev:react`,
-`npm run dev:vue`, or `npm run dev:angular`. See
-[CLIENT_USER/README.md](./CLIENT_USER/README.md) for configuration details and
-the [SDK guide](./Narada_SDK/README.md) for embedding and the streaming API
-contract.
+Run an example from the repository root with `npm run dev:html`,
+`npm run dev:react`, `npm run dev:vue`, or `npm run dev:angular`.
+The aggregate `npm run build` also invokes an integration-portal workspace
+that is not present in this checkout, so it currently exits with an error
+after building the SDK and clients.
 
-### Running the project
+## Python API foundation
 
-Open the terminal and run:
-```sh
-cd test-project
-python -u hello.py
-```
-Or just press the *Run Code* button found in the top right of the editor panel.
-### Want to contribute?
-
-Feel free to [open a PR](https://github.com/Codeanywhere-Templates/python) with any suggestions for this test project 😃 
+Setup, configuration, current endpoint behavior, and tests are documented in
+[`narada-rag-backend/README.md`](./narada-rag-backend/README.md). The API
+provides health/readiness endpoints and validated errors. Its chat route
+returns HTTP 501 until generation is implemented, and the widget's current
+`{app_id, query}` SSE contract is not yet compatible with the backend's
+prototype request model.

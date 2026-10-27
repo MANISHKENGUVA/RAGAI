@@ -1,5 +1,12 @@
 <template>
-  <div ref="messageList" class="message-list" role="log" aria-live="polite" aria-relevant="additions text">
+  <div
+    ref="messageList"
+    class="message-list"
+    role="log"
+    aria-live="polite"
+    aria-relevant="additions text"
+    @scroll="updateScrollPosition"
+  >
     <section v-if="messages.length === 0" class="welcome-card" aria-labelledby="welcome-title">
       <div class="welcome-card__intro">
         <span class="welcome-card__sparkle" aria-hidden="true">✦</span>
@@ -97,6 +104,7 @@ export default {
   },
   data() {
     return {
+      shouldStickToBottom: true,
       suggestedPrompts: [
         {
           title: 'Answer a question',
@@ -112,7 +120,7 @@ export default {
         },
         {
           title: 'Help me get started',
-          description: 'Find the information you need in your workspace.',
+          description: 'Explore what your connected assistant can do.',
           query: 'Help me get started',
           icon: '↗',
         },
@@ -123,15 +131,15 @@ export default {
     messages: {
       deep: true,
       handler() {
+        if (!this.messages.length) {
+          this.shouldStickToBottom = true;
+        }
         this.scrollToBottom();
       },
     },
     isLoading() {
       this.scrollToBottom();
     },
-  },
-  updated() {
-    this.scrollToBottom();
   },
   methods: {
     formatTimestamp(timestamp) {
@@ -145,12 +153,23 @@ export default {
       }).format(date);
     },
     scrollToBottom() {
+      if (!this.shouldStickToBottom) {
+        return;
+      }
+
       this.$nextTick(() => {
         const list = this.$refs.messageList;
-        if (list) {
+        if (list && this.shouldStickToBottom) {
           list.scrollTop = list.scrollHeight;
         }
       });
+    },
+    updateScrollPosition() {
+      const list = this.$refs.messageList;
+      if (list) {
+        this.shouldStickToBottom =
+          list.scrollHeight - list.scrollTop - list.clientHeight <= 48;
+      }
     },
   },
 };

@@ -4,7 +4,7 @@
       <span class="chat-brand__mark" aria-hidden="true">✦</span>
       <div class="chat-brand__copy">
         <h2 class="chat-title">{{ resolvedTitle }}</h2>
-        <p class="chat-subtitle"><span class="chat-status-dot"></span>Here to help, anytime</p>
+        <p class="chat-subtitle">Ask a question to get started</p>
       </div>
     </div>
     <div class="chat-header__actions">
